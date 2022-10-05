@@ -1,0 +1,16 @@
+@use "variables" as *;
+
+body {
+    /* setup main color theme */
+    background-color: $black;
+    color: $white;
+    font-size: $font-size;
+
+    /* center game space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    min-width: 100vw;
+}

@@ -1,0 +1,39 @@
+@use "variables" as *;
+
+.game {
+    height: $game-height;
+    width: $game-width;
+    min-height: $game-height;
+    min-width: $game-width;
+
+    border: 6px double $white;
+    border-radius: 15px;
+    overflow: hidden;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    &__interface {
+        height: 100%;
+        width: 100%;
+        background-color: red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &--hidden {
+            display: none;
+        }
+    }
+
+    &__user-options {
+        &__item {
+            &__text {
+                // font-family: "Roboto Slab", serif;
+                font-family: "Montserrat", sans-serif;
+            }
+        }
+    }
+}
