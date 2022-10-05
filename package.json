@@ -1,0 +1,10 @@
+{
+  "name": "text-quest",
+  "version": "1.0.0",
+  "description": "simple textQuest game",
+  "main": "index.js",
+  "repository": "git@github.com:kaminai-legacy/textQuest.git",
+  "author": "Olexander Osnova <alex.osnova.work@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
