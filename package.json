@@ -8,10 +8,12 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "format": "prettier --write './**/*.{js,scss,html}' --config ./.prettierrc",
     "watch": "sass ./src/scss/main.scss ./src/css/style.css -w",
     "build": "sass ./src/scss/main.scss ./src/css/style.css --style=compressed"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
     "sass": "^1.55.0"
   }
 }
