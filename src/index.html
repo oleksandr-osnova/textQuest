@@ -9,23 +9,40 @@
         <meta name="description" content="Simple textQuest game" />
         <meta name="keywords" content="game, textQuest, text quest" />
         <link rel="stylesheet" href="./css/style.css" />
-        <script src="./js/index.js" defer></script>
+        <script type="module" src="./js/index.js" defer></script>
     </head>
 
     <body>
         <div class="game">
-            <div
-                class="game__interface game__interface--welcome-interface"
-            ></div>
+            <div class="game__interface game__interface--welcome-interface">
+                <div class="game__menu">
+                    <div class="game__button game__button--start">Start</div>
+                    <div class="game__button game__button--continue">
+                        Continue
+                    </div>
+                    <div class="game__button game__button--loading">
+                        Loading
+                    </div>
+                </div>
+            </div>
             <div
                 class="game__interface game__interface--main-interface game__interface--hidden"
-            ></div>
+            >
+                main
+            </div>
             <div
                 class="game__interface game__interface--inventory-interface game__interface--hidden"
             ></div>
             <div
                 class="game__interface game__interface--history-interface game__interface--hidden"
             ></div>
+            <div
+                class="game__interface game__interface--loading-interface game__interface--hidden"
+            >
+                <div class="lds-circle lds-circle--overridden">
+                    <div></div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

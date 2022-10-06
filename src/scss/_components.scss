@@ -1,10 +1,10 @@
 @use "variables" as *;
 
 .game {
-    height: $game-height;
-    width: $game-width;
-    min-height: $game-height;
-    min-width: $game-width;
+    height: clamp($game-min-height, calc(100vh - 20px), $game-height);
+    width: clamp($game-min-width, calc(100vw - 20px), $game-width);
+    min-height: $game-min-height;
+    min-width: $game-min-width;
 
     border: 6px double $white;
     border-radius: 15px;
@@ -13,10 +13,12 @@
     padding: 10px;
     box-sizing: border-box;
 
+    position: relative;
+
     &__interface {
         height: 100%;
         width: 100%;
-        background-color: red;
+        // background-color: red;
 
         display: flex;
         flex-direction: column;
@@ -26,6 +28,36 @@
         &--hidden {
             display: none;
         }
+
+        &--loading-interface {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: calc(100% - 10px * 2);
+            height: calc(100% - 10px * 2);
+        }
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+    &__button {
+        cursor: pointer;
+
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 500;
+
+        transition: transform 0.2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 
     &__user-options {
@@ -34,6 +66,16 @@
                 // font-family: "Roboto Slab", serif;
                 font-family: "Montserrat", sans-serif;
             }
+        }
+    }
+}
+
+.lds-circle {
+    &--overridden {
+        & > div {
+            width: clamp(50px, 30vw, 150px);
+            height: clamp(50px, 30vw, 150px);
+            background-color: $white;
         }
     }
 }
