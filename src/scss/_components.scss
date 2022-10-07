@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins" as *;
 
 .game {
     height: clamp($game-min-height, calc(100vh - 20px), $game-height);
@@ -18,12 +19,13 @@
     &__interface {
         height: 100%;
         width: 100%;
-        // background-color: red;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        box-sizing: border-box;
 
         &--hidden {
             display: none;
@@ -36,6 +38,19 @@
             width: calc(100% - 10px * 2);
             height: calc(100% - 10px * 2);
         }
+
+        &--main-interface {
+            padding: 30px 50px;
+            justify-content: space-between;
+
+            @media (max-width: $medium-resolution) {
+                padding: 20px 30px;
+            }
+
+            @media (max-width: $min-resolution) {
+                padding: 10px 10px;
+            }
+        }
     }
 
     &__menu {
@@ -43,30 +58,125 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
+    }
+}
+
+.button {
+    @include clickable();
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.6em;
+    font-weight: 500;
+
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.step-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    &__title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        font-family: "Roboto Slab", serif;
     }
 
-    &__button {
-        cursor: pointer;
+    &__description {
+        line-height: 1.3;
+    }
+}
 
-        font-family: "Montserrat", sans-serif;
-        font-size: 1.6rem;
-        font-weight: 500;
+.step-user-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 
-        transition: transform 0.2s ease-in-out;
+    &__item {
+        @include clickable();
+        @include sketchy-border(1px, $black, $white);
+
+        padding: 5px 20px;
+        align-self: stretch;
+
+        transition: background-color 0.1s ease-in-out;
 
         &:hover {
-            transform: scale(1.2);
+            background-color: rgba($gray, 0.4);
         }
     }
 
-    &__user-options {
-        &__item {
-            &__text {
-                // font-family: "Roboto Slab", serif;
-                font-family: "Montserrat", sans-serif;
-            }
-        }
+    &__text {
+        font-family: "Montserrat", sans-serif;
+    }
+}
+
+.end-game {
+    width: 100%;
+    height: 100%;
+    padding: 30px 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    &__banner {
+        margin-bottom: 20px;
+        font-size: 2em;
+        font-family: "Roboto Slab", serif;
+    }
+
+    &__description {
+        margin-bottom: 10px;
+        align-self: center;
+        font-size: 1.4em;
+    }
+
+    &__statistics {
+        align-self: stretch;
+        max-width: $game-min-width;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    &__statistics-title {
+        font-size: 1.2em;
+        align-self: center;
+        margin-bottom: 10px;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    &__actions {
+    }
+}
+
+.statistic-list {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 0;
+
+    &__item {
     }
 }
 

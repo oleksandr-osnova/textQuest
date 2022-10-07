@@ -16,19 +16,40 @@
         <div class="game">
             <div class="game__interface game__interface--welcome-interface">
                 <div class="game__menu">
-                    <div class="game__button game__button--start">Start</div>
-                    <div class="game__button game__button--continue">
-                        Continue
-                    </div>
-                    <div class="game__button game__button--loading">
-                        Loading
-                    </div>
+                    <div class="button button--start">New Game</div>
+                    <div class="button button--continue">Continue</div>
+                    <div class="button button--loading">Loading</div>
+                    <div class="button button--history">History of games</div>
+                    <div class="button button--end">End</div>
                 </div>
             </div>
             <div
                 class="game__interface game__interface--main-interface game__interface--hidden"
             >
-                main
+                <div class="step-info">
+                    <div class="step-info__title">Some</div>
+                    <div class="step-info__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Vel quae architecto est ipsum ut dolore, sit
+                        voluptatibus soluta minima dolores repellendus harum,
+                        vero, quia qui distinctio? Saepe quasi enim adipisci.
+                    </div>
+                </div>
+                <div class="step-user-options">
+                    <div class="step-user-options__item">
+                        <div class="step-user-options__text">Go home</div>
+                    </div>
+                    <div class="step-user-options__item">
+                        <div class="step-user-options__text">
+                            Try to open the chest
+                        </div>
+                    </div>
+                    <div class="step-user-options__item">
+                        <div class="step-user-options__text">
+                            Go back to field
+                        </div>
+                    </div>
+                </div>
             </div>
             <div
                 class="game__interface game__interface--inventory-interface game__interface--hidden"
@@ -36,6 +57,25 @@
             <div
                 class="game__interface game__interface--history-interface game__interface--hidden"
             ></div>
+            <div
+                class="game__interface game__interface--end-game-interface game__interface--hidden"
+            >
+                <div class="end-game">
+                    <div class="end-game__info">
+                        <div class="end-game__banner">The End Of Game</div>
+                        <div class="end-game__description">
+                            <b>Result :</b>&nbsp;Dead
+                        </div>
+                        <div class="end-game__statistics">
+                        </div>
+                    </div>
+                    <div class="end-game__actions">
+                        <div class="button button--welcome">
+                            Go to main menu
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div
                 class="game__interface game__interface--loading-interface game__interface--hidden"
             >
