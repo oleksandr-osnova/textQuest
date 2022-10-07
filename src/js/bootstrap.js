@@ -1,3 +1,4 @@
-import InterfaceManager from "./gameLogic/InterfaceManager.js";
+import InterfaceManager from "./interfaceLogic/InterfaceManager.js";
+
 
 new InterfaceManager();
