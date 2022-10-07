@@ -1,13 +1,15 @@
 import toHtml from "../../utils/templateParser.js";
 import Session from "../../session/Session.js";
 import { insertReplacement } from "../../utils/templateParser.js";
+import GameHistory from "../../gameLogic/GameHistory.js";
+import { MainPage } from "./index.js";
 
 export default class EndGamePage {
   static #statisticSelector = ".end-game__statistics";
   static #descriptionSelector = ".end-game__description";
   static #statisticItems = new Map([
-    ["Монет", Session.coins],
-    ["Кроків", Session.steps],
+    ["Монет", () => Session.coins],
+    ["Кроків", () => Session.steps],
   ]);
 
   static #templateStatisticTitle = `<div class="end-game__statistics-title">Статистика</div>`;
@@ -53,5 +55,8 @@ export default class EndGamePage {
 
     document.querySelector(EndGamePage.#statisticSelector).innerHTML =
       EndGamePage.getStatisticTemplate();
+
+    new GameHistory();
+    MainPage.resetGame();
   }
 }
