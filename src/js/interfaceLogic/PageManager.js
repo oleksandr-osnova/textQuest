@@ -3,40 +3,23 @@ import * as pages from "./pages/index.js";
 export default class PageManager {
   static #pages = new Map([
     [
-      "welcome",
+      env.GAME_PAGE_MAIN,
       {
-        selector: ".game__interface--welcome-interface",
-        noLoading: true,
+        class: pages.MainPage,
       },
     ],
     [
-      "main",
-      {
-        selector: ".game__interface--main-interface",
-      },
-    ],
-    [
-      "end",
+      env.GAME_PAGE_END,
       {
         class: pages.EndGamePage,
       },
     ],
-    [
-      "loading",
-      {
-        selector: ".game__interface--loading-interface",
-      },
-    ],
   ]);
 
-  static async preparePage(page = "welcome") {
+  static async preparePage(page = env.GAME_PAGE_WELCOME, ...rest) {
     const pageInfo = PageManager.#pages.get(page);
 
-    pageInfo.class?.prepare && pageInfo.class.prepare();
-
-    await new Promise((res) => {
-      setTimeout(res, 1000);
-    });
+    pageInfo.class?.prepare && pageInfo.class.prepare(...rest);
 
     return true;
   }

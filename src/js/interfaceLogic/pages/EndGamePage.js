@@ -4,14 +4,17 @@ import { insertReplacement } from "../../utils/templateParser.js";
 
 export default class EndGamePage {
   static #statisticSelector = ".end-game__statistics";
+  static #descriptionSelector = ".end-game__description";
   static #statisticItems = new Map([
-    ["Coins", () => Session.coins],
-    ["Steps", () => Session.steps],
+    ["Монет", Session.coins],
+    ["Кроків", Session.steps],
   ]);
 
-  static #templateStatisticTitle = `<div class="end-game__statistics-title">Statistics</div>`;
+  static #templateStatisticTitle = `<div class="end-game__statistics-title">Статистика</div>`;
   static #templateUl = `<ul class="statistic-list">\${items}</ul>`;
   static #templateLi = `<li class="statistic-list__item"><b>\${key}:</b>&nbsp;\${value}</li>`;
+
+  static #templateDescription = `<b>Результат :</b>&nbsp;\${result}`;
 
   static get getStatisticBlock() {
     return toHtml(EndGamePage.getStatisticTemplate());
@@ -41,7 +44,13 @@ export default class EndGamePage {
     return result;
   }
 
-  static prepare() {
+  static prepare(result) {
+    document.querySelector(EndGamePage.#descriptionSelector).innerHTML =
+      insertReplacement(
+        EndGamePage.#templateDescription,
+        new Map([["result", result]])
+      );
+
     document.querySelector(EndGamePage.#statisticSelector).innerHTML =
       EndGamePage.getStatisticTemplate();
   }

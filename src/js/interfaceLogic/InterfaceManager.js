@@ -1,31 +1,31 @@
 import PageManager from "./PageManager.js";
 
 export default class InterfaceManager {
-  #currentPage = "welcome";
+  #currentPage = env.GAME_PAGE_WELCOME;
   #classHidden = "game__interface--hidden";
   #loadingDuration = env.LOADING_DURATION;
   #pages = new Map([
     [
-      "welcome",
+      env.GAME_PAGE_WELCOME,
       {
         selector: ".game__interface--welcome-interface",
         noLoading: true,
       },
     ],
     [
-      "main",
+      env.GAME_PAGE_MAIN,
       {
         selector: ".game__interface--main-interface",
       },
     ],
     [
-      "end",
+      env.GAME_PAGE_END,
       {
         selector: ".game__interface--end-game-interface",
       },
     ],
     [
-      "loading",
+      env.GAME_PAGE_LOADING,
       {
         selector: ".game__interface--loading-interface",
       },
@@ -69,7 +69,7 @@ export default class InterfaceManager {
     }),
     additionalTime = false
   ) {
-    const loadingPageInfo = this.getPageInfo("loading");
+    const loadingPageInfo = this.getPageInfo(env.GAME_PAGE_LOADING);
 
     this.showPage(document.querySelector(loadingPageInfo.selector));
 
@@ -84,7 +84,7 @@ export default class InterfaceManager {
     this.hidePage(document.querySelector(loadingPageInfo.selector));
   }
 
-  async changePage(newPage = "welcome") {
+  async changePage(newPage = env.GAME_PAGE_WELCOME, ...rest) {
     const newPageInfo = this.getPageInfo(newPage);
 
     // hide old page
@@ -93,7 +93,7 @@ export default class InterfaceManager {
     );
 
     await this.loadingAnimation(
-      PageManager.preparePage(newPage),
+      PageManager.preparePage(newPage, ...rest),
       !newPageInfo?.noLoading
     );
 
@@ -104,16 +104,24 @@ export default class InterfaceManager {
   }
 
   bindListeners() {
-    const loading = document.querySelector(".button--loading");
-    loading.addEventListener("click", () => this.changePage("loading"));
+    const startB = document.querySelector(".button--start");
+    startB.addEventListener("click", () => this.changePage(env.GAME_PAGE_MAIN, true));
 
-    const end = document.querySelector(".button--end");
-    end.addEventListener("click", () => this.changePage("end"));
+    const continueB = document.querySelector(".button--continue");
+    continueB.addEventListener("click", () => this.changePage(env.GAME_PAGE_MAIN));
 
-    const start = document.querySelector(".button--start");
-    start.addEventListener("click", () => this.changePage("main"));
+    const welcomeB = document.querySelector(".button--welcome");
+    welcomeB.addEventListener("click", () => this.changePage(env.GAME_PAGE_WELCOME));
 
-    const welcome = document.querySelector(".button--welcome");
-    welcome.addEventListener("click", () => this.changePage("welcome"));
+    globalThis.addEventListener(env.GAME_EVENT_CHANGE_GAME, (e) => {
+      console.log(e.detail);
+      const event = new CustomEvent(env.GAME_EVENT_CHANGE_GAME, {
+        detail: {
+          ...e.detail,
+          newPage: env.GAME_PAGE_END,
+        },
+      });
+      this.changePage(env.GAME_PAGE_END, e.detail.result);
+    });
   }
 }
