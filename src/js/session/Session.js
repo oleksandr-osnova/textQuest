@@ -1,6 +1,5 @@
 export default class Session {
   static get coins() {
-    console.log(globalThis.env);
     return (
       globalThis.sessionStorage.getItem(env.SESSION_STATISTIC_COIN_COUNTER) || 0
     );
