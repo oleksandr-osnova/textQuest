@@ -75,15 +75,35 @@ export default class MainGamePage {
       );
   }
 
+  static checkAutoEvents() {
+    const currentStepInfo = scenario.stepInfo;
+
+    currentStepInfo.events
+      .filter((event) => event.activation === "auto")
+      .forEach((el) => {
+        if (Math.random() < el.chance) {
+          console.log(el);
+          const event = new CustomEvent(el.eventConfig.action.type, {
+            detail: {
+              ...el.eventConfig.action.detail,
+            },
+          });
+          globalThis.dispatchEvent(event);
+        }
+      });
+  }
+
   static bindListeners() {
     MainGamePage.#isListenersBounded = true;
     document
       .querySelector(MainGamePage.#optionsSelector)
       .addEventListener("click", (e) => {
         if (e.target.dataset?.nextStep) {
-          scenario.setCurrentStep(e.target.dataset.nextStep);
+          const { nextStep } = e.target.dataset;
+          scenario.setCurrentStep(nextStep);
           MainGamePage.prepareStep();
           Session.addSteps(1);
+          Session.currentStep = nextStep;
         } else if (e.target.dataset?.trigger) {
           const parsedData = JSON.parse(e.target.dataset?.trigger);
           const event = new CustomEvent(parsedData.type, {
@@ -103,9 +123,15 @@ export default class MainGamePage {
       });
       globalThis.dispatchEvent(event);
     });
+
+    globalThis.addEventListener(env.GAME_EVENT_FIND_COIN, (e) => {
+      console.log(e.detail);
+      Session.addCoins(e.detail.count);
+    });
   }
 
   static prepareStep() {
     MainGamePage.updatePageData();
+    MainGamePage.checkAutoEvents();
   }
 }

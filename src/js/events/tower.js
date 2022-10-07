@@ -36,4 +36,11 @@ const deadEnd = new GameEvent(
   }
 );
 
-export { backToHome, successFinish, deadEnd };
+const findCoin = new GameEvent("find-coin", "Знайшли монетку", "", {
+  type: env.GAME_EVENT_FIND_COIN,
+  detail: {
+    count: 1,
+  },
+});
+
+export { backToHome, successFinish, deadEnd, findCoin };

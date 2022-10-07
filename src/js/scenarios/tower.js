@@ -38,6 +38,20 @@ tower.addGameStep(
 );
 
 tower.addGameStep(
+  "floor-1-room-3",
+  "Ви потрапили в кімнату №3",
+  "Ніби то пуста кімната, але приглядівшись ви знайшли монетку",
+  "Спробуйте інші кімнати",
+  [
+    {
+      activation: "auto",
+      eventConfig: towerEvents.findCoin,
+      chance: 1,
+    },
+  ]
+);
+
+tower.addGameStep(
   "floor-2-corridor",
   "Ви потрапили в коридор на другому поверсі",
   "В коридорі повно кімнат, а в кінці видно сходи на інші поверхи",
@@ -72,10 +86,17 @@ tower.addGameStep(
 
 tower.addBound("init", "floor-1-corridor", "Зайти в башту");
 tower.addBound("floor-1-corridor", "floor-1-room-1", "Перевірити 1 кімнату");
+tower.addBound("floor-1-corridor", "floor-1-room-2", "Перевірити 2 кімнату");
+tower.addBound("floor-1-corridor", "floor-1-room-3", "Перевірити 3 кімнату");
 tower.addBound("floor-1-room-1", "floor-1-corridor", "Повернутись у коридор");
 tower.addBound("floor-1-room-2", "floor-1-corridor", "Повернутись у коридор");
-tower.addBound("floor-1-corridor", "floor-1-room-2", "Перевірити 2 кімнату");
+tower.addBound("floor-1-room-3", "floor-1-corridor", "Повернутись у коридор");
 tower.addBound("floor-1-corridor", "floor-2-corridor", "Піднятись на 2 поверх");
+tower.addBound(
+  "floor-2-corridor",
+  "floor-1-corridor",
+  "Спуститися на 1 поверх"
+);
 tower.addBound("floor-2-corridor", "floor-2-room-1", "Перевірити 1 кімнату");
 tower.addBound("floor-2-corridor", "floor-2-room-2", "Перевірити 2 кімнату");
 
