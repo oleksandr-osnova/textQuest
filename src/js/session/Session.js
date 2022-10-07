@@ -38,7 +38,7 @@ export default class Session {
 
   static get currentScenario() {
     return (
-      globalThis.sessionStorage.getItem(env.SESSION_CURRENT_STEP) ||
+      globalThis.sessionStorage.getItem(env.SESSION_CURRENT_SCENARIO) ||
       env.DEFAULT_SCENARIO
     );
   }
