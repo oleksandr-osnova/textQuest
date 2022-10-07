@@ -3,6 +3,12 @@ import * as pages from "./pages/index.js";
 export default class PageManager {
   static #pages = new Map([
     [
+      env.GAME_PAGE_WELCOME,
+      {
+        class: pages.WelcomePage,
+      },
+    ],
+    [
       env.GAME_PAGE_MAIN,
       {
         class: pages.MainPage,

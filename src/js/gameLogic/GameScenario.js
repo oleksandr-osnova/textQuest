@@ -1,3 +1,4 @@
+import Session from "../session/Session.js";
 import GameStep from "./GameStep.js";
 
 class GameScenario {
@@ -8,6 +9,10 @@ class GameScenario {
 
   setCurrentStep(v) {
     this.currentStep = v;
+  }
+
+  uploadCurrentStep() {
+    this.currentStep = Session.currentStep;
   }
 
   get stepInfo() {

@@ -34,6 +34,7 @@ export default class InterfaceManager {
 
   constructor() {
     this.bindListeners();
+    this.changePage(env.GAME_PAGE_WELCOME);
   }
 
   get humanizedLoadingDuration() {

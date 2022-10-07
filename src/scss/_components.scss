@@ -83,6 +83,10 @@
 
     transition: transform 0.2s ease-in-out;
 
+    &--hidden {
+        display: none;
+    }
+
     &:hover {
         transform: scale(1.1);
     }
