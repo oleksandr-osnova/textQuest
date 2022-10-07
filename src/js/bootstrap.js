@@ -3,4 +3,3 @@ import DB from "./db/DB.js";
 
 globalThis["env"] = env;
 globalThis["dbInstance"] = new DB();
-

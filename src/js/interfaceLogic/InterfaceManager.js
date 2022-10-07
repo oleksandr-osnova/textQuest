@@ -105,13 +105,19 @@ export default class InterfaceManager {
 
   bindListeners() {
     const startB = document.querySelector(".button--start");
-    startB.addEventListener("click", () => this.changePage(env.GAME_PAGE_MAIN, true));
+    startB.addEventListener("click", () =>
+      this.changePage(env.GAME_PAGE_MAIN, true)
+    );
 
     const continueB = document.querySelector(".button--continue");
-    continueB.addEventListener("click", () => this.changePage(env.GAME_PAGE_MAIN));
+    continueB.addEventListener("click", () =>
+      this.changePage(env.GAME_PAGE_MAIN)
+    );
 
     const welcomeB = document.querySelector(".button--welcome");
-    welcomeB.addEventListener("click", () => this.changePage(env.GAME_PAGE_WELCOME));
+    welcomeB.addEventListener("click", () =>
+      this.changePage(env.GAME_PAGE_WELCOME)
+    );
 
     globalThis.addEventListener(env.GAME_EVENT_CHANGE_GAME, (e) => {
       console.log(e.detail);
