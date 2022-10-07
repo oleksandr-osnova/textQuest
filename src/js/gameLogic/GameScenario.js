@@ -1,27 +1,31 @@
 import GameStep from "./GameStep.js";
 
 class GameScenario {
-  constructor() {
-    this.gameSteps = new Map();
+  constructor(gameSteps = new Map()) {
+    this.gameSteps = gameSteps;
+    this.currentStep = env.DEFAULT_STEP;
   }
 
   setCurrentStep(v) {
     this.currentStep = v;
   }
 
-  addGameStep(name, description, tip) {
-    const newStep = new GameStep(name, description, tip);
+  get stepInfo() {
+    return this.gameSteps.get(this.currentStep);
+  }
+
+  addGameStep(name, title, description, tip, events) {
+    const newStep = new GameStep(name, title, description, tip, events);
     this.gameSteps.set(newStep[GameStep.primaryKey], newStep);
     return newStep;
   }
 
-  addBound(v, w, c) {
-    this.gameSteps
-      .get(v[GameStep.primaryKey])
-      ["outputs"].push({ step: w, condition: c });
-    this.gameSteps
-      .get(w[GameStep.primaryKey])
-      ["inputs"].push({ step: v, condition: {} });
+  addBound(v, w, t) {
+    const step = this.gameSteps.get(v);
+    step["outputs"].push({ step: w, title: t });
+
+    this.gameSteps.set(v, step);
+    step.putInstance();
   }
 
   static initializedDB(version) {

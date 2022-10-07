@@ -1,19 +1,18 @@
-import DB from "../db/DB.js";
-
 class GameStep {
   static primaryKey = "key";
   static storeName = "gameSteps";
   #limitOfOutputs = 4;
 
-  constructor(name, description, tip) {
+  constructor(name, title, description, tip = "", events = []) {
     this.key = name;
+    this.title = title;
     this.description = description;
     this.tip = tip;
     this.inputs = [];
     this.outputs = [];
-    this.events = [];
-
-    this.saveInstance();
+    this.events = events;
+    console.log("create step");
+    this.putInstance();
   }
 
   static upgradeDB(version) {
@@ -28,7 +27,7 @@ class GameStep {
     }
   }
 
-  saveInstance() {
+  putInstance() {
     const self = this;
     dbInstance.readWrite(
       [GameStep.storeName],
