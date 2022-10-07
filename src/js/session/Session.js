@@ -26,6 +26,28 @@ export default class Session {
     );
   }
 
+  static get currentStep() {
+    return (
+      globalThis.sessionStorage.getItem(env.SESSION_CURRENT_STEP) ||
+      env.DEFAULT_STEP
+    );
+  }
+
+  static set currentStep(v) {
+    return globalThis.sessionStorage.setItem(env.SESSION_CURRENT_STEP, v);
+  }
+
+  static get currentScenario() {
+    return (
+      globalThis.sessionStorage.getItem(env.SESSION_CURRENT_STEP) ||
+      env.DEFAULT_SCENARIO
+    );
+  }
+
+  static set currentScenario(v) {
+    return globalThis.sessionStorage.setItem(env.SESSION_CURRENT_STEP, v);
+  }
+
   static addCoins(count = 1) {
     Session.coins += count;
   }
