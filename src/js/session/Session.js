@@ -45,14 +45,14 @@ export default class Session {
   }
 
   static set currentScenario(v) {
-    return globalThis.sessionStorage.setItem(env.SESSION_CURRENT_STEP, v);
+    return globalThis.sessionStorage.setItem(env.SESSION_CURRENT_SCENARIO, v);
   }
 
   static addCoins(count = 1) {
-    Session.coins += count;
+    Session.coins = parseInt(Session.coins) + count;
   }
 
   static addSteps(count = 1) {
-    Session.steps += count;
+    Session.steps = parseInt(Session.steps) + count;
   }
 }
