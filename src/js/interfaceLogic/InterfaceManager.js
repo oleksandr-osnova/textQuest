@@ -119,7 +119,7 @@ export default class InterfaceManager {
       this.changePage(env.GAME_PAGE_WELCOME)
     );
 
-    globalThis.addEventListener(env.GAME_EVENT_CHANGE_GAME, (e) => {
+    globalThis.addEventListener(env.GAME_EVENT_CHANGE_PAGE, (e) => {
       console.log(e.detail);
       const event = new CustomEvent(env.GAME_EVENT_CHANGE_GAME, {
         detail: {

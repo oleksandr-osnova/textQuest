@@ -10,7 +10,7 @@ const DEFAULT_STEP = "init";
 const DEFAULT_SCENARIO = "tower";
 
 const GAME_EVENT_END = "game:end";
-const GAME_EVENT_CHANGE_GAME = "game:change-page";
+const GAME_EVENT_CHANGE_PAGE = "game:change-page";
 
 const GAME_PAGE_WELCOME = "welcome";
 const GAME_PAGE_MAIN = "main";
@@ -27,7 +27,7 @@ export {
   DEFAULT_STEP,
   DEFAULT_SCENARIO,
   GAME_EVENT_END,
-  GAME_EVENT_CHANGE_GAME,
+  GAME_EVENT_CHANGE_PAGE,
   GAME_PAGE_WELCOME,
   GAME_PAGE_MAIN,
   GAME_PAGE_END,

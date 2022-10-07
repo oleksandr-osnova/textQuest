@@ -95,7 +95,7 @@ export default class MainGamePage {
 
     globalThis.addEventListener(env.GAME_EVENT_END, (e) => {
       console.log(e.detail);
-      const event = new CustomEvent(env.GAME_EVENT_CHANGE_GAME, {
+      const event = new CustomEvent(env.GAME_EVENT_CHANGE_PAGE, {
         detail: {
           ...e.detail,
           newPage: env.GAME_PAGE_END,
