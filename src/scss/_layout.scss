@@ -13,4 +13,6 @@ body {
 
     min-height: 100vh;
     min-width: 100vw;
+
+    font-size: clamp(15px, 4vmin, 21px);
 }
