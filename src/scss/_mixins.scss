@@ -3,7 +3,11 @@
     cursor: pointer;
 }
 
-@mixin sketchy-border($width: 3px, $background: transparent, $border-color: $white) {
+@mixin sketchy-border(
+    $width: 3px,
+    $background: transparent,
+    $border-color: $white
+) {
     display: inline-block;
     border: $width solid darken($border-color, 10%);
     border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
