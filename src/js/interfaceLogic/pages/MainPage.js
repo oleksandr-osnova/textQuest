@@ -49,6 +49,7 @@ export default class MainGamePage {
     Session.steps = 0;
     Session.currentStep = env.DEFAULT_STEP;
     Session.currentScenario = env.DEFAULT_SCENARIO;
+    scenario.setCurrentStep(env.DEFAULT_STEP);
   }
 
   static prepare(newGame = false) {
