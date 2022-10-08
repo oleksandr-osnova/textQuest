@@ -19,6 +19,7 @@
     &__interface {
         height: 100%;
         width: 100%;
+        padding: 10px;
 
         display: flex;
         flex-direction: column;
@@ -28,6 +29,14 @@
         box-sizing: border-box;
 
         background-color: $black;
+
+        @media (max-width: $medium-resolution) {
+            padding: 5px;
+        }
+
+        @media (max-width: $min-resolution) {
+            padding: 2px;
+        }
 
         &--hidden {
             display: none;
@@ -44,6 +53,13 @@
             left: 10px;
             width: calc(100% - 10px * 2);
             height: calc(100% - 10px * 2);
+        }
+
+        &--history-interface {
+            gap: 20px;
+            justify-content: space-between;
+            padding-top: 50px;
+            padding-bottom: 60px;
         }
 
         &--main-interface {
@@ -71,6 +87,42 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
+    }
+
+    &__table {
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+}
+
+.table {
+    border-collapse: collapse;
+    border: 4px solid $gray;
+    width: 100%;
+
+    &__caption {
+        font-size: 2em;
+        font-family: "Roboto Slab", serif;
+        user-select: none;
+
+        margin-bottom: 15px;
+    }
+
+    &__head {
+        user-select: none;
+        text-align: center;
+    }
+
+    &__body {
+        text-align: center;
+    }
+
+    &__tr {
+    }
+
+    &__td {
+        border: 2px solid $gray;
+        padding: 8px;
     }
 }
 
