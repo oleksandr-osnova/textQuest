@@ -4,10 +4,10 @@ Simple browser game
 Core file setting in <b>root/src/env.js</b>
 
 To prepare environments
-- yarn install
+- pnpm install
 
 To run watching
-- yarn watch
+- pnpm watch
 
 To run Build
-- yarn build
+- pnpm build
