@@ -2,7 +2,7 @@ import Session from "../session/Session.js";
 import DateManager from "../utils/DateManager.js";
 
 class GameHistory {
-  static primaryKey = "date";
+  static primaryKey = env.GAME_HISTORY_DB_PRIMARY_KEY;
   static storeName = "gameHistories";
 
   constructor() {

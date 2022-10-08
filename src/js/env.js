@@ -34,7 +34,7 @@ const GAME_HISTORY_KEYS = new Map([
   ["coins", "Монет"],
 ]);
 
-export {
+globalThis["env"] = {
   LOADING_DURATION,
   MAX_ADDITIONAL_LOADING_DURATION,
   //
