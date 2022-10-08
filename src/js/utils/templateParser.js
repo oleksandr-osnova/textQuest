@@ -1,9 +1,9 @@
-export function element(template, mimeType) {
+export function getElement(template, mimeType) {
   return new DOMParser().parseFromString(template, mimeType).body
     .firstElementChild;
 }
 
-export function insertReplacement(template, varList = {}) {
+export function substituteValues(template, varList = {}) {
   let getValue;
   if (varList instanceof Map) {
     getValue = function (key) {
@@ -20,6 +20,6 @@ export function insertReplacement(template, varList = {}) {
   });
 }
 
-export default function toHtml(template) {
-  return element(template, "text/html");
+export default function getDomElement(template) {
+  return getElement(template, "text/html");
 }

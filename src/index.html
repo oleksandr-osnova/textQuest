@@ -19,7 +19,7 @@
                 <div class="game__menu">
                     <div class="button button--start">Нова Гра</div>
                     <div class="button button--continue">Продовжити</div>
-                    <!-- <div class="button button--history">Історія ігор</div> -->
+                    <div class="button button--history">Історія ігор</div>
                 </div>
             </div>
             <div
@@ -55,7 +55,32 @@
             ></div>
             <div
                 class="game__interface game__interface--history-interface game__interface--hidden"
-            ></div>
+            >
+                <table class="table">
+                    <caption class="table__caption">
+                        Історія ігор
+                    </caption>
+                    <thead class="table__head">
+                        <tr class="table__tr">
+                            <td class="table__td">Дата</td>
+                            <td class="table__td">Сценарій</td>
+                            <td class="table__td">Кроки</td>
+                            <td class="table__td">Монети</td>
+                            <td class="table__td">Результат</td>
+                        </tr>
+                    </thead>
+                    <tbody class="table__body">
+                        <tr class="table__tr">
+                            <td class="table__td">люба</td>
+                            <td class="table__td">tower</td>
+                            <td class="table__td">3</td>
+                            <td class="table__td">2</td>
+                            <td class="table__td">Повернення додому</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button button--welcome">Назад в головне меню</div>
+            </div>
             <div
                 class="game__interface game__interface--end-game-interface game__interface--hidden"
             >
@@ -74,7 +99,6 @@
                     </div>
                 </div>
             </div>
-            <!-- game__interface--hidden -->
             <div class="game__interface game__interface--loading-interface">
                 <div class="lds-circle lds-circle--overridden">
                     <div></div>

@@ -1,6 +1,6 @@
-import toHtml from "../../utils/templateParser.js";
+import getDomElement from "../../utils/templateParser.js";
 import Session from "../../session/Session.js";
-import { insertReplacement } from "../../utils/templateParser.js";
+import { substituteValues } from "../../utils/templateParser.js";
 import GameHistory from "../../gameLogic/GameHistory.js";
 import { MainPage } from "./index.js";
 
@@ -19,7 +19,7 @@ export default class EndGamePage {
   static #templateDescription = `<b>Результат :</b>&nbsp;\${result}`;
 
   static get getStatisticBlock() {
-    return toHtml(EndGamePage.getStatisticTemplate());
+    return getDomElement(EndGamePage.getStatisticTemplate());
   }
 
   static getStatisticTemplate() {
@@ -28,7 +28,7 @@ export default class EndGamePage {
     console.log(EndGamePage.#statisticItems);
     EndGamePage.#statisticItems.forEach((value, key) => {
       console.log(key, value);
-      items += insertReplacement(
+      items += substituteValues(
         EndGamePage.#templateLi,
         new Map([
           ["key", key],
@@ -38,7 +38,7 @@ export default class EndGamePage {
     });
 
     result += EndGamePage.#templateStatisticTitle;
-    result += insertReplacement(
+    result += substituteValues(
       EndGamePage.#templateUl,
       new Map([["items", items]])
     );
@@ -48,7 +48,7 @@ export default class EndGamePage {
 
   static prepare(result) {
     document.querySelector(EndGamePage.#descriptionSelector).innerHTML =
-      insertReplacement(
+      substituteValues(
         EndGamePage.#templateDescription,
         new Map([["result", result]])
       );

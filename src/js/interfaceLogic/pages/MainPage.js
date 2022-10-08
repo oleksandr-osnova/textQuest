@@ -1,5 +1,5 @@
 import Session from "../../session/Session.js";
-import { insertReplacement } from "../../utils/templateParser.js";
+import { substituteValues } from "../../utils/templateParser.js";
 
 export default class MainGamePage {
   static #titleSelector = ".step-info__title";
@@ -17,7 +17,7 @@ export default class MainGamePage {
 
     options.forEach((el) => {
       console.log(el);
-      result += insertReplacement(
+      result += substituteValues(
         MainGamePage.#templateOptionItem,
         new Map([
           ["attributeKey", "next-step"],
@@ -31,7 +31,7 @@ export default class MainGamePage {
       .filter((event) => event.activation === "option")
       .forEach((el) => {
         console.log(el);
-        result += insertReplacement(
+        result += substituteValues(
           MainGamePage.#templateOptionItem,
           new Map([
             ["attributeKey", "trigger"],

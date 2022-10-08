@@ -30,6 +30,12 @@ export default class InterfaceManager {
         selector: ".game__interface--loading-interface",
       },
     ],
+    [
+      env.GAME_PAGE_HISTORY,
+      {
+        selector: ".game__interface--history-interface",
+      },
+    ],
   ]);
 
   constructor() {
@@ -115,10 +121,15 @@ export default class InterfaceManager {
       this.changePage(env.GAME_PAGE_MAIN)
     );
 
-    const welcomeB = document.querySelector(".button--welcome");
-    welcomeB.addEventListener("click", () =>
-      this.changePage(env.GAME_PAGE_WELCOME)
+    const historyB = document.querySelector(".button--history");
+    historyB.addEventListener("click", () =>
+      this.changePage(env.GAME_PAGE_HISTORY)
     );
+
+    const welcomeB = Array.from(document.querySelectorAll(".button--welcome"));
+    welcomeB.forEach((b) => {
+      b.addEventListener("click", () => this.changePage(env.GAME_PAGE_WELCOME));
+    });
 
     globalThis.addEventListener(env.GAME_EVENT_CHANGE_PAGE, (e) => {
       this.changePage(e.detail.newPage, e.detail.result);

@@ -20,6 +20,12 @@ export default class PageManager {
         class: pages.EndGamePage,
       },
     ],
+    [
+      env.GAME_PAGE_HISTORY,
+      {
+        class: pages.HistoryPage,
+      },
+    ],
   ]);
 
   static async preparePage(page = env.GAME_PAGE_WELCOME, ...rest) {

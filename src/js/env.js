@@ -23,6 +23,16 @@ const GAME_PAGE_WELCOME = "welcome";
 const GAME_PAGE_MAIN = "main";
 const GAME_PAGE_END = "end";
 const GAME_PAGE_LOADING = "loading";
+const GAME_PAGE_HISTORY = "history";
+
+// history keys
+const GAME_HISTORY_DB_PRIMARY_KEY = "date";
+const GAME_HISTORY_KEYS = new Map([
+  ["date", "Дата"],
+  ["scenario", "Сценарій"],
+  ["steps", "Кроків"],
+  ["coins", "Монет"],
+]);
 
 export {
   LOADING_DURATION,
@@ -45,4 +55,8 @@ export {
   GAME_PAGE_MAIN,
   GAME_PAGE_END,
   GAME_PAGE_LOADING,
+  GAME_PAGE_HISTORY,
+  //
+  GAME_HISTORY_DB_PRIMARY_KEY,
+  GAME_HISTORY_KEYS,
 };
