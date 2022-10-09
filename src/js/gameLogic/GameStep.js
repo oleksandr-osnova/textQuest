@@ -1,17 +1,18 @@
 class GameStep {
   static primaryKey = "key";
+  static indexKey = "scenario";
   static storeName = "gameSteps";
   #limitOfOutputs = 4;
 
-  constructor(name, title, description, tip = "", events = []) {
+  constructor(name, scenario, title, description, tip = "", events = []) {
     this.key = name;
+    this.scenario = scenario;
     this.title = title;
     this.description = description;
     this.tip = tip;
     this.inputs = [];
     this.outputs = [];
     this.events = events;
-    console.log("create step");
     this.putInstance();
   }
 
@@ -23,6 +24,7 @@ class GameStep {
             keyPath: GameStep.primaryKey,
           });
           store.createIndex(GameStep.indexName, GameStep.primaryKey);
+          store.createIndex(GameStep.secondIndexName, GameStep.indexKey);
         };
     }
   }
@@ -46,6 +48,10 @@ class GameStep {
 
   static get indexName() {
     return `${GameStep.primaryKey}_idx`;
+  }
+
+  static get secondIndexName() {
+    return `${GameStep.indexKey}_idx`;
   }
 
   addInput(input) {

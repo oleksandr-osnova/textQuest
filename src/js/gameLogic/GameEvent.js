@@ -1,9 +1,11 @@
 class GameEvent {
   static primaryKey = "key";
   static storeName = "gameEvents";
+  static indexKey = "scenario";
 
-  constructor(name, title, description, action) {
+  constructor(name, scenario, title, description, action) {
     this.key = name;
+    this.scenario = scenario;
     this.title = title;
     this.description = description;
     this.action = action;
@@ -19,6 +21,7 @@ class GameEvent {
             keyPath: GameEvent.primaryKey,
           });
           store.createIndex(GameEvent.indexName, GameEvent.primaryKey);
+          store.createIndex(GameEvent.secondIndexName, GameEvent.indexKey);
         };
     }
   }
@@ -38,6 +41,10 @@ class GameEvent {
 
   static get indexName() {
     return `${GameEvent.primaryKey}_idx`;
+  }
+
+  static get secondIndexName() {
+    return `${GameEvent.indexKey}_idx`;
   }
 }
 

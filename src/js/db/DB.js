@@ -4,20 +4,17 @@ import initializedDB from "./initializedDB.js";
 const indexedDB =
   window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
 
-const DB_NAME = "GameDB";
-const DB_VERSION = 1;
-
-export default class DB {
+class DB {
   constructor() {
     console.log("init");
-    const openReq = indexedDB.open(DB_NAME, DB_VERSION);
+    const openReq = indexedDB.open(env.DB_NAME, env.DB_VERSION);
     openReq.onsuccess = function (e) {
       const db = e.target.result;
-      if ("setVersion" in db && db.version < DB_VERSION) {
-        const setVerReq = db.setVersion(DB_VERSION);
+      if ("setVersion" in db && db.version < env.DB_VERSION) {
+        const setVerReq = db.setVersion(env.DB_VERSION);
         setVerReq.onsuccess = function (e) {
           console.log("upgrading");
-          upgradeDB(DB_VERSION, e.target.result.db);
+          upgradeDB(env.DB_VERSION, e.target.result.db);
           initializedDB();
         };
       } else {
@@ -50,7 +47,7 @@ export default class DB {
   }
 
   transaction(mode, stores, fn, done = () => {}) {
-    const openReq = indexedDB.open(DB_NAME);
+    const openReq = indexedDB.open(env.DB_NAME);
     openReq.onsuccess = function (e) {
       const db = e.target.result;
       const tx = db.transaction(stores, mode);
@@ -80,7 +77,7 @@ export default class DB {
 
   async transactionAsync(mode, stores, fn, done = () => {}) {
     return new Promise(function (resolve, reject) {
-      const openReq = indexedDB.open(DB_NAME);
+      const openReq = indexedDB.open(env.DB_NAME);
       openReq.onsuccess = function (e) {
         const db = e.target.result;
         const tx = db.transaction(stores, mode);
@@ -103,7 +100,7 @@ export default class DB {
   }
 
   deleteDatabase(done = () => {}) {
-    const delReq = indexedDB.deleteDatabase(DB_NAME);
+    const delReq = indexedDB.deleteDatabase(env.DB_NAME);
     delReq.onsuccess = function (e) {
       done();
     };
@@ -115,3 +112,5 @@ export default class DB {
     };
   }
 }
+
+globalThis["dbInstance"] = new DB();

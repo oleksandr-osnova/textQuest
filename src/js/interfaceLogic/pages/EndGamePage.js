@@ -25,9 +25,7 @@ export default class EndGamePage {
   static getStatisticTemplate() {
     let items = ``,
       result = ``;
-    console.log(EndGamePage.#statisticItems);
     EndGamePage.#statisticItems.forEach((value, key) => {
-      console.log(key, value);
       items += substituteValues(
         EndGamePage.#templateLi,
         new Map([

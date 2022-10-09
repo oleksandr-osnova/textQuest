@@ -13,10 +13,8 @@ export default class MainGamePage {
 
   static getOptionsItemsTemplate(options, events = []) {
     let result = ``;
-    console.log(events);
 
     options.forEach((el) => {
-      console.log(el);
       result += substituteValues(
         MainGamePage.#templateOptionItem,
         new Map([
@@ -30,7 +28,6 @@ export default class MainGamePage {
     events
       .filter((event) => event.activation === "option")
       .forEach((el) => {
-        console.log(el);
         result += substituteValues(
           MainGamePage.#templateOptionItem,
           new Map([
@@ -83,7 +80,6 @@ export default class MainGamePage {
       .filter((event) => event.activation === "auto")
       .forEach((el) => {
         if (Math.random() < el.chance) {
-          console.log(el);
           const event = new CustomEvent(el.eventConfig.action.type, {
             detail: {
               ...el.eventConfig.action.detail,
@@ -115,7 +111,6 @@ export default class MainGamePage {
       });
 
     globalThis.addEventListener(env.GAME_EVENT_END, (e) => {
-      console.log(e.detail);
       const event = new CustomEvent(env.GAME_EVENT_CHANGE_PAGE, {
         detail: {
           ...e.detail,
@@ -126,7 +121,6 @@ export default class MainGamePage {
     });
 
     globalThis.addEventListener(env.GAME_EVENT_FIND_COIN, (e) => {
-      console.log(e.detail);
       Session.addCoins(e.detail.count);
     });
   }

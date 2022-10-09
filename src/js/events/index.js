@@ -1,3 +1,3 @@
-import * as towerEvents from "./tower.js";
+import towerEvents from "./tower.js";
 
 export { towerEvents };
